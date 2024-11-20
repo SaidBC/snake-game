@@ -16,7 +16,7 @@ const errorHandler = function (err, req, res, next) {
   res.status(200).json({ status: "FAILED", error: err });
 };
 
-router.use();
+router.use(errorHandler);
 router.use("/users/:username", isFound);
 router.use((err, req, res, next) => {
   res.json({ status: "FAILED", error: err });
