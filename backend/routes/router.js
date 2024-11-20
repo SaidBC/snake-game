@@ -15,7 +15,13 @@ const router = express.Router();
 const errorHandler = function (err, req, res, next) {
   res.status(200).json({ status: "FAILED", error: err });
 };
-router.get("/", (req, res) => res.send("done"));
+router.get("/", (req, res) =>
+  res.json({
+    port: process.env.PORT,
+    jwt_secret: process.env.JWT_SECRET,
+    db: process.env.DATABASE_URL,
+  })
+);
 router.use(errorHandler);
 router.use("/users/:username", isFound);
 router.use((err, req, res, next) => {
