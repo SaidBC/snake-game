@@ -1,6 +1,12 @@
 function gameControls(e, game) {
+  const keys = {
+    top: ["w", "W", "ArrowUp"],
+    left: ["a", "A", "ArrowLeft"],
+    down: ["s", "S", "ArrowDown"],
+    right: ["d", "D", "ArrowRight"],
+  };
   if (
-    e.key === "d" &&
+    keys.right.includes(e.key) &&
     game.snake.direction != "left" &&
     game.snake.direction != "right" &&
     game.snake.isMoved
@@ -9,7 +15,7 @@ function gameControls(e, game) {
     game.snake.isMoved = false;
   }
   if (
-    e.key === "w" &&
+    keys.top.includes(e.key) &&
     game.snake.direction != "bottom" &&
     game.snake.direction != "top" &&
     game.snake.isMoved
@@ -18,7 +24,7 @@ function gameControls(e, game) {
     game.snake.isMoved = false;
   }
   if (
-    e.key === "a" &&
+    keys.left.includes(e.key) &&
     game.snake.direction != "right" &&
     game.snake.direction != "left" &&
     game.snake.isMoved
@@ -27,7 +33,7 @@ function gameControls(e, game) {
     game.snake.isMoved = false;
   }
   if (
-    e.key === "s" &&
+    keys.down.includes(e.key) &&
     game.snake.direction != "top" &&
     game.snake.direction != "bottom" &&
     game.snake.isMoved
