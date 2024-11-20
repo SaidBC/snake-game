@@ -12,6 +12,11 @@ const auth = require("../middlewares/auth");
 const isFound = require("../middlewares/isFound");
 const router = express.Router();
 
+const errorHandler = function (err, req, res, next) {
+  res.status(200).json({ status: "FAILED", error: err });
+};
+
+router.use();
 router.use("/users/:username", isFound);
 router.use((err, req, res, next) => {
   res.json({ status: "FAILED", error: err });
