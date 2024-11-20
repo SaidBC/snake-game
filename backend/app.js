@@ -15,6 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/snakegame/api/v1", router);
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("The application is running at PORT :", PORT);
 });
