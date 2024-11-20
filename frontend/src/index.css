@@ -110,6 +110,7 @@ h1 {
   padding: 1rem 1.5rem;
   color: #213547;
   font-weight: 800;
+  min-height: 10rem;
   max-height: 15rem;
   overflow-y: auto;
 }

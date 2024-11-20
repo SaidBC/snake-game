@@ -1,37 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../App";
-
-function LogoutButton() {
-  const { setGameStatus, setIsUserLogged } = useContext(GameContext);
-
-  function handleLogout() {
-    window.localStorage.removeItem("token");
-    setGameStatus({
-      score: 0,
-      isGameOver: false,
-      isGameStarted: false,
-      gamePlayed: 0,
-    });
-    setIsUserLogged(false);
-  }
-  return (
-    <button onClick={handleLogout}>
-      <i className="fas fa-sign-out-alt"></i>
-    </button>
-  );
-}
+import LogoutButton from "./LogoutButton";
+const API_BASE_URL =
+  "https://snake-game-production-9f17.up.railway.app/snakegame/api/v1";
 
 function Leaderboard() {
   const [topPlayers, setTopPlayers] = useState([]);
   const token = localStorage.getItem("token");
-
+  const {
+    gameStatus: { gamePlayed },
+  } = useContext(GameContext);
   useEffect(() => {
-    fetch("http://localhost:8000/snakegame/api/v1/leaderboard")
+    fetch(`${API_BASE_URL}/leaderboard`)
       .then((res) => res.json())
       .then((data) => {
         setTopPlayers(data.data);
       });
-  }, []);
+  }, [gamePlayed]);
 
   return (
     <div className="leaderboard-container">

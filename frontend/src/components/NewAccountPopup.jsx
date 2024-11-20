@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { GameContext } from "../App";
 import ShowError from "./utils/ShowError";
+const API_BASE_URL =
+  "https://snake-game-production-9f17.up.railway.app/snakegame/api/v1";
 
 function NewAccountPopup() {
   const { setGameStatus, setIsUserLogged } = useContext(GameContext);
@@ -29,7 +31,7 @@ function NewAccountPopup() {
   function handleLogin(e) {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    fetch("http://localhost:8000/snakegame/api/v1/user/login", {
+    fetch(`${API_BASE_URL}/user/login`, {
       method: "POST",
       mode: "cors",
       body: formData,
@@ -53,7 +55,7 @@ function NewAccountPopup() {
   function handleRegister(e) {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    fetch("http://localhost:8000/snakegame/api/v1/user/register", {
+    fetch(`${API_BASE_URL}/user/register`, {
       method: "POST",
       mode: "cors",
       body: formData,
